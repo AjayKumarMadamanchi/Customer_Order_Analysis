@@ -12,6 +12,8 @@ SELECT
     HOST_SINCE,
     IS_SUPERHOST,
     RESPONSE_RATE,
+    DBT_VALID_FROM,
+    DBT_VALID_TO,
     updated_at
 FROM {{ ref('snapshot_hosts') }}
 
