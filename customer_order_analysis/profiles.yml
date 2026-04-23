@@ -3,9 +3,8 @@ customer_order_analysis:
   outputs:
     dev:
       type: snowflake
-      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
-      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
-      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
+      account: FKJJHZA-HE36490.snowflakecomputing.com
+      user: AK9866
       role: ACCOUNTADMIN
       database: DEV  # <--- Points to your Dev DB
       warehouse: COMPUTE_WH
@@ -14,9 +13,8 @@ customer_order_analysis:
 
     prod:
       type: snowflake
-      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
-      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
-      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
+      account: FKJJHZA-HE36490.snowflakecomputing.com
+      user: AK9866
       role: ACCOUNTADMIN
       database: PROD # <--- Points to your Production DB
       warehouse: COMPUTE_WH
