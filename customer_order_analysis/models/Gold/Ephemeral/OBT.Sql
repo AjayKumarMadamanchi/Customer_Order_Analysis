@@ -8,21 +8,21 @@
 
 {% set configs = [
     {
-        "table" : "DEV.SILVER.SILVER_BOOKINGS",
-        "columns" : "SILVER_bookings.*",
-        "alias" : "SILVER_bookings"
+        "table" : "DEV.SILVER.BOOKINGS",
+        "columns" : "bookings.*",
+        "alias" : "bookings"
     },
     { 
-        "table" : "DEV.SNAPSHOTS.SILVER_LISTINGS",
-        "columns" : "SILVER_listings.HOST_ID, SILVER_listings.PROPERTY_TYPE, SILVER_listings.ROOM_TYPE, SILVER_listings.CITY, SILVER_listings.COUNTRY, SILVER_listings.ACCOMMODATES, SILVER_listings.BEDROOMS, SILVER_listings.BATHROOMS, SILVER_listings.PRICE_PER_NIGHT",
-        "alias" : "SILVER_listings",
-        "join_condition" : "SILVER_bookings.listing_id = SILVER_listings.listing_id"
+        "table" : "DEV.SNAPSHOTS.LISTINGS",
+        "columns" : "listings.HOST_ID, listings.PROPERTY_TYPE, listings.ROOM_TYPE, listings.CITY, listings.COUNTRY, listings.ACCOMMODATES, listings.BEDROOMS, listings.BATHROOMS, listings.PRICE_PER_NIGHT",
+        "alias" : "listings",
+        "join_condition" : "bookings.listing_id = listings.listing_id"
     },
     {
-        "table" : "DEV.SNAPSHOTS.SILVER_HOSTS",
-        "columns" : "SILVER_hosts.HOST_NAME, SILVER_hosts.HOST_SINCE, SILVER_hosts.IS_SUPERHOST, SILVER_hosts.RESPONSE_RATE",
-        "alias" : "SILVER_hosts",
-        "join_condition" : "SILVER_listings.host_id = SILVER_hosts.host_id"
+        "table" : "DEV.SNAPSHOTS.HOSTS",
+        "columns" : "hosts.HOST_NAME, hosts.HOST_SINCE, hosts.IS_SUPERHOST, hosts.RESPONSE_RATE",
+        "alias" : "hosts",
+        "join_condition" : "listings.host_id = hosts.host_id"
     }
 ] %}
 
@@ -41,7 +41,7 @@ FROM
     {% endfor %}
 
 {% if is_incremental() %}
-    WHERE SILVER_bookings.updated_at > (
+    WHERE bookings.updated_at > (
         select coalesce(max(updated_at), '1900-01-01'::timestamp)
         from {{ this }}
     )

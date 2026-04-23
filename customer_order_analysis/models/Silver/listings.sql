@@ -21,11 +21,11 @@ SELECT
 
 FROM {{source('Bronze','listings')}}
 
- {% if is_incremental() %}
- WHERE
- updated_at>(
-    select coalsec(max(updated_at,'1900-01-01'::timestamp)  from {{this}})
- )
+ 
 
-
+{% if is_incremental() %}
+  WHERE updated_at>(
+    select coalesce(max(updated_at), '1900-01-01'::timestamp) 
+    from {{this}}
+  )
 {% endif %}
