@@ -24,6 +24,7 @@ models:
       +schema: silver
     Gold:
       +materialized: incremental
+      +schema: gold
       Ephemeral:
         +materialized: ephemeral
 

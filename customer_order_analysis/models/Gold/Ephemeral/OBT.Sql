@@ -13,7 +13,7 @@
         "alias" : "bookings"
     },
     { 
-        "table" : "DEV.SNAPSHOTS.LISTINGS",
+        "table" : "DEV.SILVER.LISTINGS",
         "columns" : "listings.HOST_ID, listings.PROPERTY_TYPE, listings.ROOM_TYPE, listings.CITY, listings.COUNTRY, listings.ACCOMMODATES, listings.BEDROOMS, listings.BATHROOMS, listings.PRICE_PER_NIGHT",
         "alias" : "listings",
         "join_condition" : "bookings.listing_id = listings.listing_id"
