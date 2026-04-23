@@ -42,7 +42,7 @@ FROM
 
 {% if is_incremental() %}
     where SILVER_bookings.updated_at > (
-        select coalesce(max(s.updated_at), '1900-01-01')
+        select coalesce(max(s.updated_at), '1900-01-01'::timestamp)
         from {{ this }} s
     )
     {% endif %}

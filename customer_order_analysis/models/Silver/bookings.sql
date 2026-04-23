@@ -1,7 +1,7 @@
 {{
   config(
     materialized='incremental',
-    unique_key='updated_at',
+    unique_key='booking_id',
     incremental_strategy='merge'
   )
 }}
@@ -20,7 +20,7 @@ FROM  {{ source('Bronze', 'bookings_stream') }}
 
 {% if is_incremental() %}
   WHERE updated_at>(
-    select coalesce(max(created_at), '1900-01-01') 
+    select coalesce(max(created_at), '1900-01-01'::timestamp) 
     from {{this}}
     )
 {% endif %}

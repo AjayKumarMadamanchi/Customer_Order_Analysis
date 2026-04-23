@@ -24,7 +24,7 @@ FROM {{source('Bronze','listings_stream')}}
  {% if is_incremental() %}
  WHERE
  updated_at>(
-    select coalsec(max(updated_at,'1900-01-01'))
+    select coalsec(max(updated_at,'1900-01-01'::timestamp))
  )
  from this
 
