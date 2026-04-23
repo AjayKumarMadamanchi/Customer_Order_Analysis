@@ -19,7 +19,7 @@
         "join_condition" : "bookings.listing_id = listings.listing_id"
     },
     {
-        "table" : "DEV.SNAPSHOTS.HOSTS",
+        "table" : "DEV.SNAPSHOTS.snapshot_hosts",
         "columns" : "hosts.HOST_NAME, hosts.HOST_SINCE, hosts.IS_SUPERHOST, hosts.RESPONSE_RATE",
         "alias" : "hosts",
         "join_condition" : "listings.host_id = hosts.host_id"
