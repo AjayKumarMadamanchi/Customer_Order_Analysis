@@ -5,6 +5,7 @@ customer_order_analysis:
       type: snowflake
       account: FKJJHZA-HE36490.snowflakecomputing.com
       user: AK9866
+      password: Ak9866Chow9866@
       role: ACCOUNTADMIN
       database: DEV  # <--- Points to your Dev DB
       warehouse: COMPUTE_WH
@@ -15,6 +16,7 @@ customer_order_analysis:
       type: snowflake
       account: FKJJHZA-HE36490.snowflakecomputing.com
       user: AK9866
+      password: Ak9866Chow9866@
       role: ACCOUNTADMIN
       database: PROD # <--- Points to your Production DB
       warehouse: COMPUTE_WH
