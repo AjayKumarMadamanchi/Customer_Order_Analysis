@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # Note: v4 is currently standard; ensure v6 exists/is intended
+        uses: actions/checkout@v6 # Note: v4 is currently standard; ensure v6 exists/is intended
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.9"
 
