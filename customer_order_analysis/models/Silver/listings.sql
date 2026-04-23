@@ -19,7 +19,7 @@ SELECT
     PRICE_PER_NIGHT,
     {{date_conversion_timezone('updated_at','Asia/Kolkata')}} as updated_at
 
-FROM {{source('Bronze','listings_stream')}}
+FROM {{source('Bronze','listings')}}
 
  {% if is_incremental() %}
  WHERE

@@ -15,12 +15,12 @@ SELECT booking_id,
         service_fee,
         {{total_booking_cost('nights_booked','booking_amount','cleaning_fee','service_fee')}} as total_booking_cost,
         booking_status,
-        {{date_conversion_timezone('updated_at','Asia/Kolkata')}} as updated_at
-FROM  {{ source('Bronze', 'bookings_stream') }}
+        {{date_conversion_timezone('updated_at', 'Asia/Kolkata')}} as updated_at
+FROM  {{ source('Bronze', 'bookings') }}
 
 {% if is_incremental() %}
-  WHERE updated_at>(
-    select coalesce(max(created_at), '1900-01-01'::timestamp) 
+  WHERE updated_at > (
+    select coalesce(max(updated_at), '1900-01-01'::timestamp) 
     from {{this}}
-    )
+  )
 {% endif %}
