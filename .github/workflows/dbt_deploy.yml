@@ -5,9 +5,13 @@ on:
     branches:
       - main
 
+defaults:
+  run:
+    working-directory: customer_order_analysis
 jobs:
   deploy_to_prod:
     runs-on: ubuntu-latest
+    
     
     env:
       DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
