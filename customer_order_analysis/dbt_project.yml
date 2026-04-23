@@ -22,6 +22,8 @@ models:
       +materialized: incremental
       +incremental_strategy: merge # Best for Snowflake to handle updates/inserts
       +schema: silver
+    Gold:
+      +materialized: incremental
       Ephemeral:
         +materialized: ephemeral
 
