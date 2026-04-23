@@ -4,9 +4,9 @@ customer_order_analysis:
     dev:
       type: snowflake
       account: FKJJHZA-HE36490
-      user: AK9866
+      user: GITHUB
       password: Ak9866Chow9866#
-      role: ACCOUNTADMIN
+      role: DBT_CI_ROLE
       database: DEV  # <--- Points to your Dev DB
       warehouse: COMPUTE_WH
       schema: silver
@@ -15,9 +15,9 @@ customer_order_analysis:
     prod:
       type: snowflake
       account: FKJJHZA-HE36490
-      user: AK9866
+      user: GITHUB
       password: Ak9866Chow9866#
-      role: ACCOUNTADMIN
+      role:  DBT_CI_ROLE
       database: PROD # <--- Points to your Production DB
       warehouse: COMPUTE_WH
       schema: silver
