@@ -1,0 +1,29 @@
+name: dbt_CI_Check
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # This allows you to run it manually to test!
+
+# This tells GitHub to run all commands inside your subfolder
+defaults:
+  run:
+    working-directory: customer_order_analysis
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    env:
+      DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+      # ... (include all other secrets here)
+    
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dbt
+        run: pip install dbt-snowflake
+      - name: dbt Build
+        run: dbt build

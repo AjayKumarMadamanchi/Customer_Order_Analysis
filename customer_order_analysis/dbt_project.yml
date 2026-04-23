@@ -1,0 +1,27 @@
+name: 'customer_order_analysis'
+version: '1.0.0'
+profile: 'customer_order_analysis'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  customer_order_analysis:
+    # Global default (optional, but keeps things safe)
+    +materialized: view
+      
+    Silver:
+      +materialized: incremental
+      +incremental_strategy: merge # Best for Snowflake to handle updates/inserts
+      +schema: silver
+      Ephemeral:
+        +materialized: ephemeral
+

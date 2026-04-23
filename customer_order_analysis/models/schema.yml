@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: Fact_Bookings
+    columns:
+      - name: booking_id
+        tests:
+          - unique
+          - not_null
+
+      - name: listing_id
+        tests:
+          - relationships:
+              to: ref('Dim_listings')
+              field: listing_id
+
+      - name: booking_amount
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: false

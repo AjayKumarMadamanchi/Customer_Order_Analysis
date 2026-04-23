@@ -1,0 +1,8 @@
+sources:
+  - name: Bronze
+    database: dev
+    schema: STREAM
+    tables: 
+      - name: bookings_stream
+      - name: hosts_stream
+      - name : listings_stream

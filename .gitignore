@@ -1,0 +1,14 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# dbt specific
+logs/
+target/
+dbt_packages/
+
+
+# OS files
+.DS_Store
+Thumbs.db
