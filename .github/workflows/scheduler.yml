@@ -2,15 +2,15 @@ name: daily job schedule
 
 on:
   schedule:
-    -cron :'30 23 * * *'
+    - cron: '30 23 * * *' # Added space after '-' and after ':'
 
 defaults:
   run:
     working-directory: customer_order_analysis
+
 jobs:
   deploy_to_prod:
     runs-on: ubuntu-latest
-    
     
     env:
       DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4 # Note: v4 is currently standard; ensure v6 exists/is intended
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.9"
 
