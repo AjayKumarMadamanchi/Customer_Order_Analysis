@@ -29,5 +29,7 @@ jobs:
           python-version: '3.9'
       - name: Install dbt
         run: pip install dbt-snowflake
+      - name: Install Packages
+        run: dbt deps
       - name: dbt Build
         run: dbt build
