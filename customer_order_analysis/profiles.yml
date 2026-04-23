@@ -3,7 +3,7 @@ customer_order_analysis:
   outputs:
     dev:
       type: snowflake
-      account: FKJJHZA-HE36490.snowflakecomputing.com
+      account: FKJJHZA-HE36490
       user: AK9866
       password: Ak9866Chow9866@
       role: ACCOUNTADMIN
@@ -14,7 +14,7 @@ customer_order_analysis:
 
     prod:
       type: snowflake
-      account: FKJJHZA-HE36490.snowflakecomputing.com
+      account: FKJJHZA-HE36490
       user: AK9866
       password: Ak9866Chow9866@
       role: ACCOUNTADMIN
