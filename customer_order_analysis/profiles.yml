@@ -12,6 +12,7 @@ customer_order_analysis:
       schema: silver
       threads: 1
 
+
     prod:
       type: snowflake
       account: FKJJHZA-HE36490
