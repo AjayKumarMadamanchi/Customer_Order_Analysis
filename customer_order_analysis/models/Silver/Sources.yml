@@ -1,6 +1,6 @@
 sources:
   - name: Bronze
-    database: "{{ 'Prod' if target.name == 'Prod' else 'dev' }}"
+    database: "{{ 'PROD' if target.name == 'prod' else 'DEV' }}"
     schema: Bronze
     tables: 
       - name: bookings

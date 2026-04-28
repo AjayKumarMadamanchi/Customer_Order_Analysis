@@ -3,9 +3,9 @@
 {{
     config(
       target_schema='snapshots',
-      unique_key='host_id',
+      unique_key='HOST_ID',
       strategy='check',
-      check_cols=['is_superhost']
+      check_cols=['IS_SUPERHOST']
     )
 }}
 

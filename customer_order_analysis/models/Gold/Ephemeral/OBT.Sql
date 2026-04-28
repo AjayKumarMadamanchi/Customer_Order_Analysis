@@ -8,21 +8,21 @@
 
 {% set configs = [
     {
-        "table" : "DEV.SILVER.BOOKINGS",
-        "columns" : "bookings.*",
-        "alias" : "bookings"
+        "table" : ref('bookings'),
+        "columns" : "BOOKINGS.*",
+        "alias" : "BOOKINGS"
     },
     { 
-        "table" : "DEV.SILVER.LISTINGS",
-        "columns" : "listings.HOST_ID, listings.PROPERTY_TYPE, listings.ROOM_TYPE, listings.CITY, listings.COUNTRY, listings.ACCOMMODATES, listings.BEDROOMS, listings.BATHROOMS, listings.PRICE_PER_NIGHT",
-        "alias" : "listings",
-        "join_condition" : "bookings.listing_id = listings.listing_id"
+        "table" : ref('listings'),
+        "columns" : "LISTINGS.HOST_ID, LISTINGS.PROPERTY_TYPE, LISTINGS.ROOM_TYPE, LISTINGS.CITY, LISTINGS.COUNTRY, LISTINGS.ACCOMMODATES, LISTINGS.BEDROOMS, LISTINGS.BATHROOMS, LISTINGS.PRICE_PER_NIGHT",
+        "alias" : "LISTINGS",
+        "join_condition" : "BOOKINGS.LISTING_ID = LISTINGS.LISTING_ID"
     },
     {
-        "table" : "DEV.SNAPSHOTS.snapshot_hosts",
-        "columns" : "hosts.HOST_NAME, hosts.HOST_SINCE, hosts.IS_SUPERHOST, hosts.RESPONSE_RATE",
-        "alias" : "hosts",
-        "join_condition" : "listings.host_id = hosts.host_id"
+        "table" : ref('snapshot_hosts'),
+        "columns" : "HOSTS.HOST_NAME, HOSTS.HOST_SINCE, HOSTS.IS_SUPERHOST, HOSTS.RESPONSE_RATE",
+        "alias" : "HOSTS",
+        "join_condition" : "LISTINGS.HOST_ID = HOSTS.HOST_ID"
     }
 ] %}
 

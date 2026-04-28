@@ -6,21 +6,34 @@
   )
 }}
 
-SELECT booking_id,
-        listing_id,
-        booking_date,
-        nights_booked,
-        booking_amount,
-        cleaning_fee,
-        service_fee,
-        {{total_booking_cost('nights_booked','booking_amount','cleaning_fee','service_fee')}} as total_booking_cost,
-        booking_status,
-        {{date_conversion_timezone('updated_at', 'Asia/Kolkata')}} as updated_at
-FROM  {{ source('Bronze', 'bookings') }}
+{{
+  config(
+    materialized='incremental',
+    unique_key='BOOKING_ID',
+    incremental_strategy='merge'
+  )
+}}
+
+WITH TRANSFORMED_DATA AS (
+    SELECT 
+        BOOKING_ID,
+        LISTING_ID,
+        BOOKING_DATE,
+        NIGHTS_BOOKED,
+        BOOKING_AMOUNT,
+        CLEANING_FEE,
+        SERVICE_FEE,
+        {{ total_booking_cost('NIGHTS_BOOKED','BOOKING_AMOUNT','CLEANING_FEE','SERVICE_FEE') }}  TOTAL_BOOKING_COST,
+        BOOKING_STATUS,
+        {{ date_conversion_timezone('UPDATED_AT', 'Asia/Kolkata') }}  UPDATED_AT
+    FROM {{ source('Bronze', 'bookings') }}
+)
+
+SELECT * FROM TRANSFORMED_DATA
 
 {% if is_incremental() %}
-  WHERE updated_at > (
-    select coalesce(max(updated_at), '1900-01-01'::timestamp) 
-    from {{this}}
+  WHERE UPDATED_AT > (
+    SELECT COALESCE(MAX(UPDATED_AT), '1900-01-01'::TIMESTAMP) 
+    FROM {{ this }}
   )
 {% endif %}

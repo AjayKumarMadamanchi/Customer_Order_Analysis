@@ -1,15 +1,14 @@
-
 {{
   config(
     materialized='incremental',
-    unique_key='updated_at',
+    unique_key='LISTING_ID',
     incremental_strategy='merge'
   )
 }}
 
 SELECT 
-    LISTING_ID, -- Natural Key
-    HOST_ID,    -- Foreign Key to dim_hosts
+    LISTING_ID,
+    HOST_ID,
     PROPERTY_TYPE,
     ROOM_TYPE,
     CITY,
@@ -22,6 +21,5 @@ SELECT
 FROM {{ ref('listings') }}
 
 {% if is_incremental() %}
-  -- Only pull records updated since the last run
   WHERE updated_at > (SELECT MAX(updated_at) FROM {{ this }})
 {% endif %}
