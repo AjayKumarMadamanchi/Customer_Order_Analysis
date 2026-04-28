@@ -35,4 +35,4 @@ jobs:
           dbt deps
 
       - name: Deploy to Production
-        run: dbt run --target prod
+        run: dbt build --target prod

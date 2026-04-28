@@ -1,7 +1,7 @@
 {{
   config(
     materialized='incremental',
-    unique_key='HOST_ID',
+    unique_key='updated_at',
     incremental_strategy='merge'
   )
 }}
@@ -13,11 +13,11 @@ HOST_SINCE,
 IS_SUPERHOST,
 RESPONSE_RATE,
 {{date_conversion_timezone('updated_at','Asia/Kolkata')}} as updated_at
-FROM {{source('Bronze','hosts')}}
+FROM {{source('Bronze','hosts_stream')}}
 
 {% if is_incremental() %}
   WHERE updated_at>(
-    select coalesce(max(updated_at), '1900-01-01'::timestamp) 
+    select coalesce(max(created_at), '1900-01-01') 
     from {{this}}
   )
 {% endif %}
